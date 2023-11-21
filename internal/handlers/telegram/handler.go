@@ -59,7 +59,7 @@ messageHandler handles the Message Telegram Object, which formats the
 Telegram update into a simple string for IRC.
 */
 func messageHandler(tg *Client, u tgbotapi.Update) {
-	username := GetUsername(tg.IRCSettings.ShowZWSP, u.Message.From)
+	// username := GetUsername(tg.IRCSettings.ShowZWSP, u.Message.From)
 	formatted := ""
 
 	if tg.IRCSettings.NoForwardPrefix != "" && strings.HasPrefix(u.Message.Text, tg.IRCSettings.NoForwardPrefix) {
@@ -78,10 +78,13 @@ func messageHandler(tg *Client, u tgbotapi.Update) {
 		return
 	}
 
-	formatted = fmt.Sprintf("%s%s%s %s",
-		tg.Settings.Prefix,
-		username,
-		tg.Settings.Suffix,
+	// formatted = fmt.Sprintf("%s%s%s %s",
+	// 	tg.Settings.Prefix,
+	// 	username,
+	// 	tg.Settings.Suffix,
+	// 	// Trim unexpected trailing whitespace
+	// 	strings.Trim(u.Message.Text, " "))
+	formatted = fmt.Sprintf("%s",
 		// Trim unexpected trailing whitespace
 		strings.Trim(u.Message.Text, " "))
 
